@@ -5,6 +5,7 @@
 This repository implements an emotion recognition model using the FER2013 dataset. The model is built using a custom convolutional neural network (CNN) and is trained to classify facial expressions into one of seven emotions.
 
 1. CUSTOM MODEL: https://www.kaggle.com/code/sarthshah777/cnn-task
+2. Transfer Learning Model : https://www.kaggle.com/code/sarthshah777/cnn-task-transfer-learning
    
 
 ## Approach and Decisions

@@ -37,11 +37,11 @@ The model used is a custom CNN (`MyModel`), which consists of:
 
 1.Gradient Vanishing/Exploding:
 
-Deep networks can sometimes face issues where the gradients (used to update the model) become too small (vanishing) or too large (exploding). This can make the model hard to train. To fix this, you can use good weight initialization techniques and keep an eye on how large the gradients are during training to ensure they don't cause problems.
+
 
 2. Hyperparameter Tuning:
 
-The number of layers, kernel size, dropout rate, and learning rate are critical hyperparameters. Finding the right combination for your custom model can be time-consuming and require numerous experiments.
+The number of layers, kernel size, dropout rate, and learning rate are critical hyperparameters. Finding the right combination for  custom model 
    
 
 # Transfer Learning

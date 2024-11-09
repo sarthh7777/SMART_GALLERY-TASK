@@ -33,39 +33,39 @@ The model used is a custom CNN (`MyModel`), which consists of:
     - After training, the model will save the best weights based on validation accuracy. You can evaluate the model's performance on the test set or use it for inference.
 
 
+## CHALLENGES 
+
+1.Gradient Vanishing/Exploding:
+
+Deep networks can sometimes face issues where the gradients (used to update the model) become too small (vanishing) or too large (exploding). This can make the model hard to train. To fix this, you can use good weight initialization techniques and keep an eye on how large the gradients are during training to ensure they don't cause problems.
+
+2. Hyperparameter Tuning:
+
+The number of layers, kernel size, dropout rate, and learning rate are critical hyperparameters. Finding the right combination for your custom model can be time-consuming and require numerous experiments.
    
 
-2.  Transfer Learning Method 
+# Transfer Learning
 
-code:
-https://www.kaggle.com/code/sarthshah777/cnn-task-transfer-learning/edit
+## Approach and Decisions
 
-Approach and Decisions:
+### 1. **Preprocessing and Augmentation**
+- **Grayscale to RGB:** FER2013 images are originally grayscale, so they were converted to RGB for compatibility with ResNet-18.
+- **Data Augmentation:** Applied random transformations like horizontal flip, rotation, and color jitter (brightness, contrast, saturation, and hue) to improve the model's ability to generalize.
 
-Preprocessing and Augmentation:
+### 2. **Model Selection**
+- **ResNet-18:** Used ResNet-18 with pre-trained weights on ImageNet for transfer learning. The final layer was modified to output 7 classes to match the 7 emotion classes in the FER2013 dataset.
 
-Converted grayscale images to RGB since ResNet-18 expects RGB image.
+### 3. **Loss Function and Optimizer**
+- **Loss Function:** `CrossEntropyLoss` for multi-class classification.
+- **Optimizer:** Stochastic Gradient Descent (SGD) with momentum to optimize the model.
+- **Learning Rate Scheduler:** `StepLR` with a decay factor of 0.1 every 7 epochs to reduce the learning rate gradually.
 
-Data Augmentation: Random horizontal flip, rotation, color jitter to enhance the generalization.
+### 4. **Training**
+- The model was trained for 25 epochs, alternating between training and validation phases.
+- The model with the highest validation accuracy was saved for future evaluation or inference.
 
-Model Selection:
-ResNet-18 with pre-trained weights, last layer changed accordingly to output 7 classes since FER2013 has only 7 emotions.
+## Challenges
 
-Loss Function and Optimizer:
-CrossEntropyLoss for multi-class classification.
+- **Data Imbalance:** The FER2013 dataset contains class imbalance, where some emotion categories have more samples than others. This can lead to biases in the model’s predictions, requiring careful evaluation and potential adjustments (e.g., using weighted loss functions or data balancing).
 
-Optimizer: SGD with momentum
- Scheduler: StepLR γ = 0.1 periodicity = 7 epochs
- 
- Training:
- 
- Trained for 25 epochs with a training and then validation phase. Saved the model with best validation accuracy
- 
 
-  Challenges
-
- Data imbalance - FER2013 has class imbalance which can induce bias
- 
- Computational constraints - Training on limited resources may take considerable time
- 
- Overfitting: Augmentations helped in this case, but dropout might be helpful for this model as well.
